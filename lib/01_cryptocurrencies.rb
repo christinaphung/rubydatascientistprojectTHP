@@ -9,30 +9,68 @@ value = ["$6558.07", "$468.95", "$0.487526", "$762.84", "$8.86", "$85.26", "$0.1
 value.map! {|i| i.delete("$").to_f}
 merged = Hash[currency.zip(value)]
 
-def q1
+def intro 
+  puts "Cryptocurrencies Analysis :"
+  sleep 0.01 
+  puts "---\nQue souhaites-tu savoir ?"
+  sleep 0.01 
+  puts "1. La ou les crypto qui ont la plus forte valeur."
+  sleep 0.01 
+  puts "2. La ou les crypto qui ont la plus faible valeur."
+  sleep 0.01 
+  puts "3. Le nombre de crypto contenant le mot 'coin'."
+  sleep 0.01 
+  puts "4. Les devises, dont le cours est inférieur à $6.000."
+  sleep 0.01 
+  puts "5. La devise la plus chère parmi celles dont le cours est inférieur à $6.000."
+  question = gets.chomp.to_i
+end
+
+def put_back_currencies(merged)
+  ans.each {|currency, value| value.to_s.insert(0,'$')}
+end
+
+def q1(merged)
 puts merged.max_by{|currency,value| value}
 end
 
-def q2
-puts merged.min_by{|currency,value| value}
+def q2(merged)
+ans = puts merged.min_by{|currency,value| value}
 end
 
-def q3
+def q3(merged)
 puts merged.count{|currency,value| currency.include?("coin")}
 end
 
-def q4
-inf = merged.select{|currency,value| value < 6000}
+def q4(merged)
+pp merged.select{|currency,value| value < 6000}
 end
 
-def q5
+def q5(merged)
+inf = merged.select{|currency,value| value < 6000}
 puts inf.max_by{|currency,value| value}
 end
 
-def perform
-puts
+def perform(merged)
+ question = intro
+ puts "\n"
+ sleep 0.5
+ puts "loading...\n\n"
+ sleep 0.5
+  if question == 1
+    q1(merged)
+  elsif question == 2
+    q2(merged)
+  elsif question == 3
+    q3(merged)
+  elsif question == 4
+    q4(merged)
+  else question == 5
+    q5(merged)
+  end
 end
 
+perform(merged)
 
 =begin
 def put_back_currencies(hash)
