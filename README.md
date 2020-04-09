@@ -1,3 +1,5 @@
+Christina Phung & Edoardo Giacomini
+
 dossier des exercices HASH
 ├── lib
 │   ├── 00_journalists.rb
